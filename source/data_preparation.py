@@ -1,7 +1,7 @@
 import pandas as pd
 from colorama import init, Fore, Back
 
-data_set = pd.read_csv("StudentsPerformance.csv")
+data_set = pd.read_csv("./data/StudentsPerformance.csv")
 
 data_set["gender"] = data_set["gender"].map({
     "male": 1,
@@ -54,6 +54,6 @@ init(autoreset=True)
 if len(data_set) == len(data_set.dropna()):
     print(Fore.BLACK + Back.GREEN + 'Обработка данных успешно завершена...')
 
-    data_set.to_csv("StudentsPerformance_prepared.csv")
+    data_set.to_csv("./data/StudentsPerformance_prepared.csv")
 else:
     print(Fore.BLACK + Back.RED + 'При обработке данных произошла ошибка!')
