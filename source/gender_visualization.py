@@ -31,7 +31,7 @@ ax.legend(loc='lower right')
 def autolabel(rects):
     for rect in rects:
         height = rect.get_height()
-        ax.annotate("{}".format(height),
+        ax.annotate("{}".format(int(height)),
             xy=(rect.get_x() + rect.get_width() / 2, height),
             xytext=(0, 3),
             textcoords="offset points",

@@ -2,35 +2,40 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-data_set = pd.read_csv("./data/StudentsPerformance_prepared.csv")
+data_set = pd.read_csv("../data/StudentsPerformance_prepared.csv")
 
 labels = ["Average math score", "Average reading score", "Average writing score"]
 
 scores = {}
-group_labels = ["Group " + l for l in "ABCDE"]
+education_levels = ["Some high school",
+                    "High school",
+                    "Some college",
+                    "Bachelor's degree",
+                    "Associate's degree",
+                    "Master's degree"]
 subject_labels = ["math_score", "reading_score", "writing_score"]
 
-for group_label, group_category in zip(group_labels, range(1, len(group_labels) + 1)):
-    scores[group_label] = []
+for education, education_category in zip(education_levels, range(1, len(education_levels) + 1)):
+    scores[education] = []
 
     for subject_label in subject_labels:
-        scores[group_label].append(
-            data_set[data_set["race/ethnicity"] == group_category][subject_label].median()
+        scores[education].append(
+            data_set[data_set["education"] == education_category][subject_label].median()
         )
 
 x = np.arange(len(labels))
-width = 0.15
+width = 0.13
 
 fig, ax = plt.subplots()
 bars = []
-for group_label in group_labels:
+for education in education_levels:
     bars.append(
-        ax.bar(x+width*3, scores[group_label], width, label=group_label)
+        ax.bar(x + width * 3.5, scores[education], width, label=education)
     )
     x = x + width
 
 ax.set_ylabel("Average score")
-ax.set_title("Average scores by race/ethnicity")
+ax.set_title("Average scores by parental level of education")
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.legend(loc='lower right')
@@ -51,4 +56,4 @@ for bar in bars:
 
 fig.tight_layout()
 
-plt.savefig("./img/race_ethnicity_visualization.png")
+plt.savefig("../img/education_visualization.png")
