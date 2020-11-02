@@ -7,7 +7,7 @@ data_set = pd.read_csv("../data/StudentsPerformance_prepared.csv")
 labels = ["Average math score", "Average reading score", "Average writing score"]
 
 scores = {}
-preparation_test = ["Completed", "None"]
+preparation_test = ["None", "Completed"]
 subject_labels = ["math_score", "reading_score", "writing_score"]
 
 for test, test_category in zip(preparation_test, range(2)):
